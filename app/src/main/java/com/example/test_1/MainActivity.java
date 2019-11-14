@@ -17,15 +17,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button rollButton = findViewById(R.id.rollButton);
+        final Button rollButton = findViewById(R.id.rollButton);
         final ImageView leftDice = findViewById(R.id.leftDice);
-        ImageView rightDice = findViewById(R.id.rightDice);
+        final ImageView rightDice = findViewById(R.id.rightDice);
+
         final int[] diceArray = {R.drawable.dice1,
                 R.drawable.dice2,
                 R.drawable.dice3,
                 R.drawable.dice4,
                 R.drawable.dice5,
-                R.drawable.dice6,};
+                R.drawable.dice6,}; // {1,2,3,4,5,6}
 
 
         rollButton.setOnClickListener(new View.OnClickListener() {
@@ -36,10 +37,13 @@ public class MainActivity extends AppCompatActivity {
                 Random randomNumberGenerator = new Random();
 
                 int number = randomNumberGenerator.nextInt(6); // 0 - 5
+                leftDice.setImageResource(diceArray[number]);
 
                 Log.d("DIce", "The result is " + number);
 
-                leftDice.setImageResource(diceArray[number]);
+                number = randomNumberGenerator.nextInt(6); //0 - 5
+                rightDice.setImageResource(diceArray[number]);
+
 
             }
         });
